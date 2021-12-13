@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package coolcar;
+
+option go_package="coolcar/proto/gen/go;trippb";
+
+enum TripStatus {
+    TS_NOT_SPECIFIED = 0;
+    NOT_STARTED = 1;
+    IN_PROGRESS = 2;
+    FINISHED = 3;
+    PAID = 4;
+}
+
+message Location {
+    int32 lat = 1;
+    int32 lng = 2;
+}
+
+message Trip {
+
+    string start = 1;
+
+    string end = 2;
+
+    int32 duration_sec = 3;
+
+    int32 fee_cent = 4;
+
+    TripStatus status = 5;
+
+    Location location = 6;
+
+}
+
+message GetTripRequest {
+    string id = 1;
+}
+
+
+message GetTripResponse {
+    string id = 1;
+    Trip trip = 2;
+}
+
+
+service TripService {
+    rpc GetTrip (GetTripRequest) returns (GetTripResponse);
+}
+

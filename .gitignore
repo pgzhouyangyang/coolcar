@@ -1,0 +1,7 @@
+
+server/vendor
+
+node_modules
+miniprogram_npm
+
+**/wx/miniprogram/**/*.js
