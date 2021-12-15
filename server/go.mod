@@ -10,6 +10,10 @@ require (
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/medivhzhan/weapp/v2 v2.4.2 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/zap v1.19.1 // indirect
 	golang.org/x/net v0.0.0-20211205041911-012df41ee64c // indirect
 	golang.org/x/sys v0.0.0-20211204120058-94396e421777 // indirect
 	golang.org/x/text v0.3.7 // indirect

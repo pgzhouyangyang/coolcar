@@ -1,25 +1,28 @@
 import camelcaseKeys from "camelcase-keys"
-import { coolcar } from "./service/proto_gen/trip_pb"
+import { auth } from "./service/proto_gen/auth/auth_pb"
+
 // app.ts
 App<IAppOption>({
 	globalData: {},
 	onLaunch() {
-		wx.request({
-			url: "http://localhost:8080/trip/trip123",
-			success(res) {
-
-				const getTripRes = coolcar.GetTripResponse.fromObject(camelcaseKeys(res.data as object, {
-					deep: true
-				}));
-				console.log(getTripRes)
-				console.log(coolcar.TripStatus[getTripRes?.trip?.status ?? 0])
-			}
-		})
 		// 登录
 		wx.login({
 			success: res => {
 				console.log(res.code)
 				// 发送 res.code 到后台换取 openId, sessionKey, unionId
+
+				wx.request({
+					url: "http://localhost:8080/v1/auth/login",
+					method: "POST",
+					data: {
+						code: res.code
+					} as auth.v1.LoginRequest,
+					success: res=> {
+						const data: auth.v1.ILoginResponse = auth.v1.LoginResponse.fromObject(camelcaseKeys(res.data as object))
+
+						console.log(data)
+					}
+				})
 			},
 		})
 	},

@@ -5,3 +5,5 @@ node_modules
 miniprogram_npm
 
 **/wx/miniprogram/**/*.js
+
+!**/wx/miniprogram/service/proto_gen/**/*.js
